@@ -1,194 +1,757 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Wallpaper Vault</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    :root {
-      --bg-color: #f4f4f4;
-      --text-color: #111;
-      --card-bg: #fff;
-    }
-    [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #f1f1f1;
-      --card-bg: #1e1e1e;
-    }
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--bg-color);
-      color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
-    }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-    }
-    .controls {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 1rem;
-      background: var(--card-bg);
-    }
-    .controls input[type="search"] {
-      padding: 0.5rem;
-      font-size: 1rem;
-      width: 100%;
-      max-width: 500px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .controls select,
-    .controls .dark-toggle {
-      padding: 0.5rem;
-      font-size: 1rem;
-      margin: 5px;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .wallpaper {
-      background: var(--card-bg);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-    .wallpaper:hover {
-      transform: scale(1.02);
-    }
-    .wallpaper img {
-      width: 100%;
-      display: block;
-    }
-    .download-btn {
-      display: block;
-      background: #ff3366;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .download-btn:hover {
-      background: #e6005c;
-    }
-    .pagination {
-      text-align: center;
-      margin: 2rem 0;
-    }
-    .pagination a {
-      padding: 0.5rem 1rem;
-      margin: 0 5px;
-      background: #ddd;
-      color: #111;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .pagination a.active {
-      background: #ff3366;
-      color: #fff;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #111;
-      color: #aaa;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Wallpaper Gallery - Blogger Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-bg: #181721;
+            --secondary-bg: #1f1d2e;
+            --accent: #a67c52;
+            --accent-hover: #c59a6d;
+            --text: #ffffff;
+            --text-secondary: #b0aebc;
+            --card-bg: #232131;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, #0c0b16, #1d1a2d);
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(166, 124, 82, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #8e5e38);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(166, 124, 82, 0.3);
+        }
+        
+        .site-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent), #d4b692);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .site-tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 3px;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-btn, .menu-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary-bg);
+            border: 1px solid rgba(166, 124, 82, 0.3);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover, .menu-toggle:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(24, 23, 33, 0.9), rgba(24, 23, 33, 0.95)), 
+                        url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1920') no-repeat center center/cover;
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent), #8e5e38);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(166, 124, 82, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(166, 124, 82, 0.6);
+        }
+        
+        /* Categories */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+        
+        .categories {
+            padding: 0 5% 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            height: 300px;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .category-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-img {
+            transform: scale(1.05);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+        
+        .category-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .category-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Wallpapers Grid */
+        .wallpapers {
+            padding: 0 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .wallpapers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .wallpaper-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .wallpaper-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .wallpaper-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .wallpaper-info {
+            padding: 20px;
+        }
+        
+        .wallpaper-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .wallpaper-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: rgba(166, 124, 82, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(166, 124, 82, 0.3);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .download-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary-bg);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .logo-container {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            .nav-actions {
+                position: absolute;
+                top: 30px;
+                right: 5%;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .wallpapers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 5%;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px;
+            }
+            
+            .category-grid, .wallpapers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Wallpaper Vault</h1>
-    <p>Explore & download beautiful wallpapers</p>
-  </header>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div>
+                    <h1 class="site-title">PREMIUM WALLPAPERS</h1>
+                    <p class="site-tagline">High-Quality Desktop & Mobile Backgrounds</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-th-large"></i> Categories</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Premium</a></li>
+                    <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile</a></li>
+                    <li><a href="#"><i class="fas fa-desktop"></i> Desktop</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-  <div class="controls">
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="Search wallpapers..."
-      onkeyup="searchWallpapers()"
-    />
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Premium Wallpapers</h1>
+            <p>Download high-resolution wallpapers for desktop and mobile. Updated daily with exclusive designs.</p>
+            <button class="cta-button">EXPLORE COLLECTION</button>
+        </div>
+    </section>
 
-    <div>
-      <select id="tagFilter" onchange="filterByTag()">
-        <option value="all">All Categories</option>
-        <option value="nature">Nature</option>
-        <option value="space">Space</option>
-        <option value="abstract">Abstract</option>
-        <option value="minimal">Minimal</option>
-      </select>
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="section-title">
+            <h2>Popular Categories</h2>
+        </div>
+        
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1505506874110-6a7a69069a08?auto=format&fit=crop&w=600" alt="Nature" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Nature</h3>
+                    <p class="category-count">128 Wallpapers</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600" alt="Abstract" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Abstract</h3>
+                    <p class="category-count">96 Wallpapers</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600" alt="Cars" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Cars & Vehicles</h3>
+                    <p class="category-count">84 Wallpapers</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600" alt="Technology" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Technology</h3>
+                    <p class="category-count">112 Wallpapers</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-    </div>
-  </div>
+    <!-- Wallpapers Section -->
+    <section class="wallpapers">
+        <div class="section-title">
+            <h2>Recent Wallpapers</h2>
+        </div>
+        
+        <div class="wallpapers-grid">
+            <!-- Wallpaper Card 1 -->
+            <div class="wallpaper-card">
+                <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=600" alt="Mountain Landscape" class="wallpaper-img">
+                <div class="wallpaper-info">
+                    <h3 class="wallpaper-title">Mountain Majesty</h3>
+                    <div class="wallpaper-meta">
+                        <span><i class="fas fa-calendar"></i> Jun 12, 2023</span>
+                        <span><i class="fas fa-download"></i> 2,458</span>
+                    </div>
+                    <a href="#" class="download-btn">Download HD (3840x2160)</a>
+                </div>
+            </div>
+            
+            <!-- Wallpaper Card 2 -->
+            <div class="wallpaper-card">
+                <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=600" alt="Forest Path" class="wallpaper-img">
+                <div class="wallpaper-info">
+                    <h3 class="wallpaper-title">Enchanted Forest</h3>
+                    <div class="wallpaper-meta">
+                        <span><i class="fas fa-calendar"></i> Jun 10, 2023</span>
+                        <span><i class="fas fa-download"></i> 1,892</span>
+                    </div>
+                    <a href="#" class="download-btn">Download HD (3840x2160)</a>
+                </div>
+            </div>
+            
+            <!-- Wallpaper Card 3 -->
+            <div class="wallpaper-card">
+                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=600" alt="Ocean Waves" class="wallpaper-img">
+                <div class="wallpaper-info">
+                    <h3 class="wallpaper-title">Ocean Serenity</h3>
+                    <div class="wallpaper-meta">
+                        <span><i class="fas fa-calendar"></i> Jun 8, 2023</span>
+                        <span><i class="fas fa-download"></i> 2,105</span>
+                    </div>
+                    <a href="#" class="download-btn">Download HD (3840x2160)</a>
+                </div>
+            </div>
+            
+            <!-- Wallpaper Card 4 -->
+            <div class="wallpaper-card">
+                <img src="https://images.unsplash.com/photo-1501163268664-3fdf329d019f?auto=format&fit=crop&w=600" alt="Cityscape" class="wallpaper-img">
+                <div class="wallpaper-info">
+                    <h3 class="wallpaper-title">Urban Nightscape</h3>
+                    <div class="wallpaper-meta">
+                        <span><i class="fas fa-calendar"></i> Jun 5, 2023</span>
+                        <span><i class="fas fa-download"></i> 1,756</span>
+                    </div>
+                    <a href="#" class="download-btn">Download HD (3840x2160)</a>
+                </div>
+            </div>
+            
+            <!-- Wallpaper Card 5 -->
+            <div class="wallpaper-card">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600" alt="Northern Lights" class="wallpaper-img">
+                <div class="wallpaper-info">
+                    <h3 class="wallpaper-title">Aurora Borealis</h3>
+                    <div class="wallpaper-meta">
+                        <span><i class="fas fa-calendar"></i> Jun 3, 2023</span>
+                        <span><i class="fas fa-download"></i> 2,843</span>
+                    </div>
+                    <a href="#" class="download-btn">Download HD (3840x2160)</a>
+                </div>
+            </div>
+            
+            <!-- Wallpaper Card 6 -->
+            <div class="wallpaper-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600" alt="Mountain Range" class="wallpaper-img">
+                <div class="wallpaper-info">
+                    <h3 class="wallpaper-title">Alpine Peaks</h3>
+                    <div class="wallpaper-meta">
+                        <span><i class="fas fa-calendar"></i> May 30, 2023</span>
+                        <span><i class="fas fa-download"></i> 1,924</span>
+                    </div>
+                    <a href="#" class="download-btn">Download HD (3840x2160)</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="gallery" id="wallpaperGallery">
-    <!-- Example wallpapers -->
-    <div class="wallpaper" data-title="Stars in Space" data-tag="space">
-      <img src="https://your-image-url.jpg" alt="Stars in Space">
-      <a href="https://your-download-link.jpg" class="download-btn" download>Download</a>
-    </div>
-    <div class="wallpaper" data-title="Calm Lake" data-tag="nature">
-      <img src="https://your-image-url2.jpg" alt="Calm Lake">
-      <a href="https://your-download-link2.jpg" class="download-btn" download>Download</a>
-    </div>
-    <div class="wallpaper" data-title="Neon Abstract" data-tag="abstract">
-      <img src="https://your-image-url3.jpg" alt="Neon Abstract">
-      <a href="https://your-download-link3.jpg" class="download-btn" download>Download</a>
-    </div>
-    <!-- Add more wallpapers here -->
-  </div>
-
-  <div class="pagination">
-    <a href="#" class="active">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-  </div>
-
-  <footer>
-    © 2025 Wallpaper Vault. All rights reserved.
-  </footer>
-
-  <script>
-    function searchWallpapers() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const wallpapers = document.querySelectorAll(".wallpaper");
-      wallpapers.forEach(w => {
-        const title = w.getAttribute("data-title").toLowerCase();
-        w.style.display = title.includes(input) ? "block" : "none";
-      });
-    }
-
-    function filterByTag() {
-      const tag = document.getElementById("tagFilter").value;
-      const wallpapers = document.querySelectorAll(".wallpaper");
-      wallpapers.forEach(w => {
-        const wallpaperTag = w.getAttribute("data-tag");
-        w.style.display = (tag === "all" || wallpaperTag === tag) ? "block" : "none";
-      });
-    }
-
-    function toggleDarkMode() {
-      const currentTheme = document.documentElement.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-    }
-  </script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>Premium Wallpapers offers the highest quality desktop and mobile backgrounds. Our collection is curated by designers and updated daily.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Premium Collection</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Mobile Wallpapers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Desktop Wallpapers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nature</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Abstract</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Technology</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Vehicles</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Space</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Minimalist</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to receive new wallpaper notifications and special offers.</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; background: var(--primary-bg); color: white;">
+                    <button type="submit" class="cta-button" style="width: 100%; padding: 12px;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Premium Wallpapers. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for Wallpaper Enthusiasts</p>
+        </div>
+    </footer>
 </body>
 </html>
